@@ -109,6 +109,12 @@ button:active,
     transition: var(--transition);
 }
 
+.logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
 .nav-logo a:hover {
     transform: scale(1.05);
 }
