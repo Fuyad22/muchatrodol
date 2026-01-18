@@ -120,7 +120,7 @@ app.post('/api/subscribe', async (req, res) => {
             subject: 'Welcome to Student Organization Newsletter',
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                    <div style="background: linear-gradient(135deg, #059669 0%, #065f46 100%); padding: 40px; text-align: center; border-radius: 10px 10px 0 0;">
+                    <div style="background: linear-gradient(135deg, #0b703e 0%, #064022 100%); padding: 40px; text-align: center; border-radius: 10px 10px 0 0;">
                         <h1 style="color: white; margin: 0;">Welcome Aboard! 🎉</h1>
                     </div>
                     <div style="background: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-radius: 0 0 10px 10px;">
@@ -208,7 +208,7 @@ app.post('/api/register-event', async (req, res) => {
                             Thank you for registering for our event! We're excited to have you join us.
                         </p>
                         <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                            <h3 style="color: #059669; margin-top: 0;">Registration Details</h3>
+                            <h3 style="color: #0b703e; margin-top: 0;">Registration Details</h3>
                             <p><strong>Name:</strong> ${name}</p>
                             <p><strong>Email:</strong> ${email}</p>
                             ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}

@@ -18,12 +18,13 @@
 }
 
 :root {
-    /* Industry Level Green Palette */
-    --primary-color: #059669;
-    /* Emerald 600 */
-    --secondary-color: #065f46;
-    /* Emerald 800 */
+    /* Industry Level Green Palette - Matched to Logo */
+    --primary-color: #0b703e;
+    /* JCD Logo Green */
+    --secondary-color: #064022;
+    /* Darker Green */
     --accent-color: #f59e0b;
+    /* Amber 500 for contrast/CTA */
     /* Amber 500 for contrast/CTA */
     --text-dark: #1f2937;
     --text-light: #6b7280;
@@ -277,7 +278,7 @@ button:focus {
 }
 
 .slide:nth-child(1) {
-    background: linear-gradient(135deg, #059669 0%, #064e3b 100%);
+    background: linear-gradient(135deg, #0b703e 0%, #064022 100%);
 }
 
 .slide:nth-child(2) {
@@ -285,7 +286,7 @@ button:focus {
 }
 
 .slide:nth-child(3) {
-    background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+    background: linear-gradient(135deg, #08522d 0%, #064022 100%);
 }
 
 .slide-content {
