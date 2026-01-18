@@ -56,7 +56,7 @@ app.post('/api/contact', async (req, res) => {
             subject: `Contact Form: ${subject}`,
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                    <h2 style="color: #2563eb;">New Contact Form Submission</h2>
+                    <h2 style="color: #059669;">New Contact Form Submission</h2>
                     <div style="background: #f9fafb; padding: 20px; border-radius: 10px;">
                         <p><strong>Name:</strong> ${name}</p>
                         <p><strong>Email:</strong> ${email}</p>
@@ -120,7 +120,7 @@ app.post('/api/subscribe', async (req, res) => {
             subject: 'Welcome to Student Organization Newsletter',
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                    <div style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); padding: 40px; text-align: center; border-radius: 10px 10px 0 0;">
+                    <div style="background: linear-gradient(135deg, #059669 0%, #065f46 100%); padding: 40px; text-align: center; border-radius: 10px 10px 0 0;">
                         <h1 style="color: white; margin: 0;">Welcome Aboard! 🎉</h1>
                     </div>
                     <div style="background: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-radius: 0 0 10px 10px;">
@@ -136,7 +136,7 @@ app.post('/api/subscribe', async (req, res) => {
                             <li>Exclusive member benefits</li>
                         </ul>
                         <div style="text-align: center; margin: 30px 0;">
-                            <a href="https://yourwebsite.com" style="background: #2563eb; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; display: inline-block;">
+                            <a href="https://yourwebsite.com" style="background: #059669; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; display: inline-block;">
                                 Visit Our Website
                             </a>
                         </div>
@@ -199,7 +199,7 @@ app.post('/api/register-event', async (req, res) => {
             subject: 'Event Registration Confirmation',
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                    <div style="background: #2563eb; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+                    <div style="background: #059669; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
                         <h1 style="color: white; margin: 0;">Registration Confirmed! ✓</h1>
                     </div>
                     <div style="background: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-radius: 0 0 10px 10px;">
@@ -208,7 +208,7 @@ app.post('/api/register-event', async (req, res) => {
                             Thank you for registering for our event! We're excited to have you join us.
                         </p>
                         <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                            <h3 style="color: #2563eb; margin-top: 0;">Registration Details</h3>
+                            <h3 style="color: #059669; margin-top: 0;">Registration Details</h3>
                             <p><strong>Name:</strong> ${name}</p>
                             <p><strong>Email:</strong> ${email}</p>
                             ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
@@ -279,7 +279,7 @@ app.post('/api/donate-blood', async (req, res) => {
                             ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
                             <p><strong>Blood Type:</strong> ${bloodType}</p>
                         </div>
-                        <h3 style="color: #2563eb;">What's Next?</h3>
+                        <h3 style="color: #059669;">What's Next?</h3>
                         <ol style="color: #4b5563; line-height: 1.8;">
                             <li>We'll contact you when our next blood drive is scheduled</li>
                             <li>Please ensure you're well-rested and hydrated before donating</li>
