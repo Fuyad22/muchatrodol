@@ -34,399 +34,538 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "মেট্রোপলিটন বিশ্ববিদ্যালয় ছাত্রদল",
+      "alternateName": "Metropolitan University Chatrodol",
+      "url": "https://yourwebsite.com",
+      "logo": "https://yourwebsite.com/logo.png",
+      "sameAs": [
+        "https://www.facebook.com/yourpage",
+        "https://twitter.com/yourhandle"
+      ]
+    }
+    </script>
 </head>
 
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">
-                    <img src="staticfiles/admin/img/jatiotabadi-chatrodol-seeklogo.png" alt="Logo" class="logo">
-                    <span>মেট্রোপলিটন বিশ্ববিদ্যালয় ছাত্রদল</span>
-                </a>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link active">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#blood-donation" class="nav-link">Blood Donation</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#library" class="nav-link">Library</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#events" class="nav-link">Events</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#faq" class="nav-link">FAQ</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#gallery" class="nav-link">Gallery</a>
-                </li>
-                <li class="nav-item">
-                    <button class="subscribe-btn">Subscribe</button>
-                </li>
-                <li class="nav-item">
-                    <button class="theme-toggle" aria-label="Toggle dark mode">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Slider Section -->
-    <section id="home" class="slider-section">
-        <div class="slider-container">
-            <div class="slide active">
-                <div class="slide-content">
-                    <h1>Welcome to Our Organization</h1>
-                    <p>Empowering students, building futures</p>
-                    <button class="cta-btn">Learn More</button>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="#home">
+                        <img src="staticfiles/admin/img/jatiotabadi-chatrodol-seeklogo.png" alt="Logo" class="logo">
+                        <span>মেট্রোপলিটন বিশ্ববিদ্যালয় ছাত্রদল</span>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#blood-donation" class="nav-link">Blood Donation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#gallery" class="nav-link">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#events" class="nav-link">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#library" class="nav-link">Library</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="subscribe-btn" id="navSubscribeBtn">Subscribe</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
             </div>
-            <div class="slide">
-                <div class="slide-content">
-                    <h1>Join Our Community</h1>
-                    <p>Connect, collaborate, and grow together</p>
-                    <button class="cta-btn">Get Involved</button>
-                </div>
-            </div>
-            <div class="slide">
-                <div class="slide-content">
-                    <h1>Make a Difference</h1>
-                    <p>Contribute to meaningful causes and initiatives</p>
-                    <button class="cta-btn">Explore Projects</button>
-                </div>
-            </div>
-        </div>
-        <button class="slider-btn prev" onclick="changeSlide(-1)">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="slider-btn next" onclick="changeSlide(1)">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="slider-dots">
-            <span class="dot active" onclick="currentSlide(0)"></span>
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-        </div>
-    </section>
+        </nav>
+    </header>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 class="section-title">About Us</h2>
-            <div class="about-content">
-                <p class="about-description">
-                    We are a vibrant student organization dedicated to fostering academic excellence,
-                    community service, and personal development. Our mission is to create a supportive
-                    environment where students can learn, grow, and make lasting connections while
-                    contributing positively to society.
-                </p>
-                <p class="about-description">
-                    Through various initiatives including blood donation drives, educational programs,
-                    and community outreach, we strive to make a meaningful impact on campus and beyond.
-                </p>
-            </div>
+    <main>
 
-            <!-- Team Members -->
-            <div class="team-section">
-                <h3 class="team-title">Our Team</h3>
-                <div class="team-grid">
-                    <div class="member-card" onclick="openMemberModal(this)" data-name="John Doe" data-role="President"
-                        data-email="john.doe@studentorg.edu" data-phone="+1 (555) 123-0001"
-                        data-bio="John has been leading our organization since 2024 with exceptional dedication. He specializes in strategic planning and team leadership. His vision has helped grow our membership by 150%."
-                        data-achievements="Led 20+ successful events, Increased membership by 150%, Established 5 community partnerships">
-                        <div class="member-avatar">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <h4 class="member-name">John Doe</h4>
-                        <p class="member-role">President</p>
-                        <p class="member-info">Leading the organization with passion and dedication</p>
+        <!-- Hero Slider Section -->
+        <section id="home" class="slider-section">
+            <div class="slider-container">
+                <div class="slide active">
+                    <div class="slide-content">
+                        <h1>Welcome to Our MU Chatrodol</h1>
+                        <p>Empowering students, Education Unity Progress</p>
+                        <button class="cta-btn">Learn More</button>
                     </div>
-                    <div class="member-card" onclick="openMemberModal(this)" data-name="Jane Smith"
-                        data-role="Vice President" data-email="jane.smith@studentorg.edu" data-phone="+1 (555) 123-0002"
-                        data-bio="Jane is responsible for coordinating all organizational activities and supporting various committees. She has a background in project management and excels at bringing people together."
-                        data-achievements="Coordinated 15+ major events, Managed volunteer teams of 50+ members, Streamlined communication systems">
-                        <div class="member-avatar">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <h4 class="member-name">Jane Smith</h4>
-                        <p class="member-role">Vice President</p>
-                        <p class="member-info">Coordinating events and member activities</p>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <h1>Join Our Community</h1>
+                        <p>Connect, collaborate, and grow together</p>
+                        <button class="cta-btn">Get Involved</button>
                     </div>
-                    <div class="member-card" onclick="openMemberModal(this)" data-name="Mike Johnson"
-                        data-role="Secretary" data-email="mike.johnson@studentorg.edu" data-phone="+1 (555) 123-0003"
-                        data-bio="Mike ensures all organizational communications run smoothly. He maintains meeting minutes, manages correspondence, and keeps everyone informed about upcoming activities."
-                        data-achievements="Digitized all organizational records, Improved response time by 60%, Created monthly newsletter reaching 500+ students">
-                        <div class="member-avatar">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <h4 class="member-name">Mike Johnson</h4>
-                        <p class="member-role">Secretary</p>
-                        <p class="member-info">Managing communications and documentation</p>
-                    </div>
-                    <div class="member-card" onclick="openMemberModal(this)" data-name="Sarah Williams"
-                        data-role="Treasurer" data-email="sarah.williams@studentorg.edu" data-phone="+1 (555) 123-0004"
-                        data-bio="Sarah manages all financial aspects of the organization with transparency and precision. She has secured multiple grants and manages our annual budget of over $50,000."
-                        data-achievements="Secured $30,000 in grants, Reduced expenses by 20%, Implemented transparent budget tracking">
-                        <div class="member-avatar">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <h4 class="member-name">Sarah Williams</h4>
-                        <p class="member-role">Treasurer</p>
-                        <p class="member-info">Overseeing finances and fundraising</p>
-                    </div>
-                    <div class="member-card" onclick="openMemberModal(this)" data-name="David Brown"
-                        data-role="Event Coordinator" data-email="david.brown@studentorg.edu"
-                        data-phone="+1 (555) 123-0005"
-                        data-bio="David brings creativity and meticulous planning to every event. From small workshops to large campus-wide gatherings, he ensures memorable experiences for all attendees."
-                        data-achievements="Organized 25+ events with 2000+ total attendees, Created signature annual festival, 95% positive feedback rating">
-                        <div class="member-avatar">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <h4 class="member-name">David Brown</h4>
-                        <p class="member-role">Event Coordinator</p>
-                        <p class="member-info">Planning and organizing all events</p>
-                    </div>
-                    <div class="member-card" onclick="openMemberModal(this)" data-name="Emily Davis"
-                        data-role="Public Relations" data-email="emily.davis@studentorg.edu"
-                        data-phone="+1 (555) 123-0006"
-                        data-bio="Emily manages our public image and builds strong relationships with campus administration, local media, and community partners. Her efforts have significantly increased our visibility."
-                        data-achievements="Featured in 10+ media outlets, Grew social media following to 5000+, Established partnership with 8 local organizations">
-                        <div class="member-avatar">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <h4 class="member-name">Emily Davis</h4>
-                        <p class="member-role">Public Relations</p>
-                        <p class="member-info">Building community relationships</p>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <h1>Make a Difference</h1>
+                        <p>Contribute to meaningful causes and initiatives</p>
+                        <button class="cta-btn">Explore Projects</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+            <button class="slider-btn prev" id="prevSlideBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-btn next" id="nextSlideBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="slider-dots" id="sliderDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+        </section>
 
-    <!-- Blood Donation Section -->
-    <section id="blood-donation" class="blood-donation-section">
-        <div class="container">
-            <h2 class="section-title">Blood Donation Initiatives</h2>
-            <div class="blood-content">
-                <div class="blood-info">
-                    <h3>Save Lives, Donate Blood</h3>
-                    <p>
-                        Our blood donation drives are among our most important initiatives.
-                        We organize regular blood donation camps in collaboration with local hospitals
-                        and blood banks to ensure a steady supply of blood for those in need.
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">About Us</h2>
+                <div class="about-content">
+                    <p class="about-description">
+                        We are a vibrant student organization dedicated to fostering academic excellence,
+                        community service, and personal development. Our mission is to create a supportive
+                        environment where students can learn, grow, and make lasting connections while
+                        contributing positively to society.
                     </p>
-                    <div class="blood-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-tint"></i>
-                            <h4>500+</h4>
-                            <p>Donors</p>
+                    <p class="about-description">
+                        Through various initiatives including blood donation drives, educational programs,
+                        and community outreach, we strive to make a meaningful impact on campus and beyond.
+                    </p>
+                </div>
+
+                <!-- Team Members -->
+                <div class="team-section">
+                    <h3 class="team-title">Our Team</h3>
+                    <div class="team-grid" id="teamGrid">
+                        <!-- Executive Committee -->
+                        <div class="member-card" data-name="Kawser Ahmed" data-role="President"
+                            data-email="kawser.ahmed@studentorg.edu" data-phone="+880 171-1111111"
+                            data-bio="Leading the organization since 2024 with exceptional dedication."
+                            data-achievements="Led 20+ successful events">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Kawser Ahmed</h4>
+                            <p class="member-role">President</p>
+                            <p class="member-info">Leading the organization with passion and dedication</p>
                         </div>
-                        <div class="stat-item">
-                            <i class="fas fa-hand-holding-heart"></i>
-                            <h4>1000+</h4>
-                            <p>Lives Saved</p>
+                        <div class="member-card" data-name="Abu Tanim" data-role="Vice President"
+                            data-email="abu.tanim@studentorg.edu" data-phone="+880 171-2222222"
+                            data-bio="Coordinating all organizational activities and supporting various committees."
+                            data-achievements="Coordinated 15+ major events">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Abu Tanim</h4>
+                            <p class="member-role">Vice President</p>
+                            <p class="member-info">Coordinating events and member activities</p>
                         </div>
-                        <div class="stat-item">
-                            <i class="fas fa-calendar-check"></i>
-                            <h4>25+</h4>
-                            <p>Camps Organized</p>
+                        <div class="member-card" data-name="Fuyad Hassan" data-role="Secretary"
+                            data-email="fuyad.hassan@studentorg.edu" data-phone="+880 171-3333333"
+                            data-bio="Ensures all organizational communications run smoothly."
+                            data-achievements="Improved response time by 60%">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Fuyad Hassan</h4>
+                            <p class="member-role">Secretary</p>
+                            <p class="member-info">Managing communications and documentation</p>
+                        </div>
+                        <div class="member-card" data-name="SNaimur Rahman Nafees" data-role="Treasurer"
+                            data-email="snaimur.rahman@studentorg.edu"
+                            data-bio="Manages all financial aspects of the organization."
+                            data-achievements="Secured $30,000 in grants">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">SNaimur Rahman Nafees</h4>
+                            <p class="member-role">Treasurer</p>
+                            <p class="member-info">Overseeing finances and fundraising</p>
+                        </div>
+                        <div class="member-card" data-name="Md Jakaria Ahmed" data-role="Event Coordinator"
+                            data-email="jakaria.ahmed@studentorg.edu"
+                            data-bio="Brings creativity and meticulous planning to every event."
+                            data-achievements="Organized 25+ events">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Md Jakaria Ahmed</h4>
+                            <p class="member-role">Event Coordinator</p>
+                            <p class="member-info">Planning and organizing all events</p>
+                        </div>
+
+                        <!-- Public Relations Team -->
+                        <div class="member-card" data-name="Marjan Ahmed Shimul" data-role="Public Relations"
+                            data-email="marjan.ahmed@studentorg.edu"
+                            data-bio="Manages our public image and builds strong relationships."
+                            data-achievements="Grew social media following to 5000+">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Marjan Ahmed Shimul</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
+                        </div>
+                        <div class="member-card" data-name="Emad Ahmed Rigve" data-role="Public Relations"
+                            data-email="emad.ahmed@studentorg.edu"
+                            data-bio="Passionate about community engagement and brand storytelling."
+                            data-achievements="Launched successful campus campaign">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Emad Ahmed Rigve</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
+                        </div>
+                        <div class="member-card" data-name="Ishtiaq Uddin Shafi" data-role="Public Relations"
+                            data-email="ishtiaq.shafi@studentorg.edu"
+                            data-bio="Specializes in digital media and content creation."
+                            data-achievements="Created viral social media content">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Ishtiaq Uddin Shafi</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
+                        </div>
+                        <div class="member-card" data-name="Ashraf Ahmed" data-role="Public Relations"
+                            data-email="ashraf.ahmed@studentorg.edu"
+                            data-bio="Connects with local student bodies and organizations."
+                            data-achievements="Established 5 new partnerships">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Ashraf Ahmed</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
+                        </div>
+                        <div class="member-card" data-name="Rifat Ahmed" data-role="Public Relations"
+                            data-email="rifat.ahmed@studentorg.edu"
+                            data-bio="Expert in press releases and media communication."
+                            data-achievements="Got featured in local newspaper">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Rifat Ahmed</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
+                        </div>
+                        <div class="member-card" data-name="Nadir Hossain" data-role="Public Relations"
+                            data-email="nadir.hossain@studentorg.edu"
+                            data-bio="Focuses on internal communication and member engagement."
+                            data-achievements="Increased member participation by 30%">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Nadir Hossain</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
+                        </div>
+                        <div class="member-card" data-name="Muzaddid Chowdhury" data-role="Public Relations"
+                            data-email="muzaddid.chowdhury@studentorg.edu"
+                            data-bio="Coordinates outreach programs and volunteer activities."
+                            data-achievements="Organized 3 successful outreach events">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Muzaddid Chowdhury</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
+                        </div>
+                        <div class="member-card" data-name="Rahib" data-role="Public Relations"
+                            data-email="rahib@studentorg.edu"
+                            data-bio="Dedicated to spreading our mission across campus."
+                            data-achievements="Recruited 50+ new volunteers">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Rahib</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
+                        </div>
+                        <div class="member-card" data-name="Ishtiaq Uddin Jamee" data-role="Public Relations"
+                            data-email="ishtiaq.jamee@studentorg.edu"
+                            data-bio="Assists in event promotion and marketing materials."
+                            data-achievements="Designed posters for annual fest">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Ishtiaq Uddin Jamee</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
+                        </div>
+                        <div class="member-card" data-name="Fahim Sadi" data-role="Public Relations"
+                            data-email="fahim.sadi@studentorg.edu"
+                            data-bio="Engages with online community and manages forums."
+                            data-achievements="Moderated 2 online webinars">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Fahim Sadi</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
+                        </div>
+                        <div class="member-card" data-name="Priobroto Drubo" data-role="Public Relations"
+                            data-email="priobroto.drubo@studentorg.edu"
+                            data-bio="Supports PR team in various administrative tasks."
+                            data-achievements="Volunteer of the month - June">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h4 class="member-name">Priobroto Drubo</h4>
+                            <p class="member-role">Public Relations</p>
+                            <p class="member-info">Building community relationships</p>
                         </div>
                     </div>
-                    <button class="donate-blood-btn">Register to Donate</button>
-                </div>
-                <div class="blood-image">
-                    <img src="https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=600" alt="Blood Donation">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Events Section -->
-    <section id="events" class="events-section">
-        <div class="container">
-            <h2 class="section-title">Upcoming Events</h2>
-            <div class="events-grid">
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">15</span>
-                        <span class="month">Feb</span>
+        <!-- Blood Donation Section -->
+        <section id="blood-donation" class="blood-donation-section">
+            <div class="container">
+                <h2 class="section-title">Blood Donation Initiatives</h2>
+                <div class="blood-content">
+                    <div class="blood-info">
+                        <h3>Save Lives, Donate Blood</h3>
+                        <p>
+                            Our blood donation drives are among our most important initiatives.
+                            We organize regular blood donation camps in collaboration with local hospitals
+                            and blood banks to ensure a steady supply of blood for those in need.
+                        </p>
+                        <div class="blood-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-tint"></i>
+                                <h4>500+</h4>
+                                <p>Donors</p>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <h4>1000+</h4>
+                                <p>Lives Saved</p>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <h4>25+</h4>
+                                <p>Camps Organized</p>
+                            </div>
+                        </div>
+                        <button class="donate-blood-btn">Register to Donate</button>
                     </div>
-                    <div class="event-content">
-                        <h4>Blood Donation Camp</h4>
-                        <p class="event-time"><i class="far fa-clock"></i> 9:00 AM - 4:00 PM</p>
-                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> Main Campus Hall</p>
-                        <p class="event-description">Join us for our quarterly blood donation drive. Save lives!</p>
-                        <button class="event-register-btn" data-event="Blood Donation Camp">Register Now</button>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">20</span>
-                        <span class="month">Feb</span>
-                    </div>
-                    <div class="event-content">
-                        <h4>Leadership Workshop</h4>
-                        <p class="event-time"><i class="far fa-clock"></i> 2:00 PM - 5:00 PM</p>
-                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> Conference Room A</p>
-                        <p class="event-description">Develop your leadership skills with expert facilitators.</p>
-                        <button class="event-register-btn" data-event="Leadership Workshop">Register Now</button>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">28</span>
-                        <span class="month">Feb</span>
-                    </div>
-                    <div class="event-content">
-                        <h4>Annual Cultural Festival</h4>
-                        <p class="event-time"><i class="far fa-clock"></i> 10:00 AM - 8:00 PM</p>
-                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> University Grounds</p>
-                        <p class="event-description">Celebrate diversity with music, dance, food, and more!</p>
-                        <button class="event-register-btn" data-event="Annual Cultural Festival">Register Now</button>
+                    <div class="blood-image">
+                        <img src="https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=600"
+                            alt="Blood Donation">
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- News/Blog Section -->
-    <section id="news" class="news-section">
-        <div class="container">
-            <h2 class="section-title">Latest News</h2>
-            <div class="news-grid">
-                <article class="news-card" data-title="Record-Breaking Blood Donation Drive"
-                    data-url="https://yourwebsite.com/news/blood-drive-success">
-                    <div class="news-image">
-                        <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Blood+Drive+Success"
-                            alt="Blood Drive Success" loading="lazy">
-                        <span class="news-badge">Success Story</span>
-                    </div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span><i class="far fa-calendar"></i> Jan 5, 2026</span>
-                            <span><i class="far fa-user"></i> Admin</span>
+        <!-- Events Section -->
+        <section id="events" class="events-section">
+            <div class="container">
+                <h2 class="section-title">Upcoming Events</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">Feb</span>
                         </div>
-                        <h3>Record-Breaking Blood Donation Drive</h3>
-                        <p>Our latest blood donation camp collected 150 units, helping save over 450 lives. Thank you to
-                            all our amazing donors!</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                        <div class="share-buttons">
-                            <span class="share-label"><i class="fas fa-share-alt"></i> Share:</span>
-                            <button class="share-btn" data-platform="facebook" aria-label="Share on Facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-                            <button class="share-btn" data-platform="twitter" aria-label="Share on Twitter">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-                            <button class="share-btn" data-platform="linkedin" aria-label="Share on LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </button>
-                            <button class="share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
-                                <i class="fab fa-whatsapp"></i>
-                            </button>
-                            <button class="share-btn" data-platform="copy" aria-label="Copy link">
-                                <i class="fas fa-link"></i>
-                            </button>
+                        <div class="event-content">
+                            <h4>Blood Donation Camp</h4>
+                            <p class="event-time"><i class="far fa-clock"></i> 9:00 AM - 4:00 PM</p>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Main Campus Hall</p>
+                            <p class="event-description">Join us for our quarterly blood donation drive. Save lives!</p>
+                            <button class="event-register-btn" data-event="Blood Donation Camp">Register Now</button>
                         </div>
                     </div>
-                </article>
-                <article class="news-card" data-title="Partnership with Local Hospital"
-                    data-url="https://yourwebsite.com/news/hospital-partnership">
-                    <div class="news-image">
-                        <img src="https://via.placeholder.com/400x250/f093fb/ffffff?text=New+Partnership"
-                            alt="New Partnership" loading="lazy">
-                        <span class="news-badge">Announcement</span>
-                    </div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span><i class="far fa-calendar"></i> Dec 28, 2025</span>
-                            <span><i class="far fa-user"></i> Admin</span>
+                    <div class="event-card">
+                        <div class="event-date">
+                            <span class="day">20</span>
+                            <span class="month">Feb</span>
                         </div>
-                        <h3>Partnership with Local Hospital</h3>
-                        <p>We're excited to announce our new partnership with City Hospital for enhanced healthcare
-                            initiatives.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                        <div class="share-buttons">
-                            <span class="share-label"><i class="fas fa-share-alt"></i> Share:</span>
-                            <button class="share-btn" data-platform="facebook" aria-label="Share on Facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-                            <button class="share-btn" data-platform="twitter" aria-label="Share on Twitter">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-                            <button class="share-btn" data-platform="linkedin" aria-label="Share on LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </button>
-                            <button class="share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
-                                <i class="fab fa-whatsapp"></i>
-                            </button>
-                            <button class="share-btn" data-platform="copy" aria-label="Copy link">
-                                <i class="fas fa-link"></i>
-                            </button>
+                        <div class="event-content">
+                            <h4>Leadership Workshop</h4>
+                            <p class="event-time"><i class="far fa-clock"></i> 2:00 PM - 5:00 PM</p>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Conference Room A</p>
+                            <p class="event-description">Develop your leadership skills with expert facilitators.</p>
+                            <button class="event-register-btn" data-event="Leadership Workshop">Register Now</button>
                         </div>
                     </div>
-                </article>
-                <article class="news-card" data-title="Best Student Organization Award"
-                    data-url="https://yourwebsite.com/news/award-ceremony">
-                    <div class="news-image">
-                        <img src="https://via.placeholder.com/400x250/4facfe/ffffff?text=Award+Ceremony"
-                            alt="Award Ceremony" loading="lazy">
-                        <span class="news-badge">Achievement</span>
-                    </div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span><i class="far fa-calendar"></i> Dec 15, 2025</span>
-                            <span><i class="far fa-user"></i> Admin</span>
+                    <div class="event-card">
+                        <div class="event-date">
+                            <span class="day">28</span>
+                            <span class="month">Feb</span>
                         </div>
-                        <h3>Best Student Organization Award</h3>
-                        <p>Proud to receive the Best Student Organization Award for our outstanding community service
-                            efforts!</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                        <div class="share-buttons">
-                            <span class="share-label"><i class="fas fa-share-alt"></i> Share:</span>
-                            <button class="share-btn" data-platform="facebook" aria-label="Share on Facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-                            <button class="share-btn" data-platform="twitter" aria-label="Share on Twitter">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-                            <button class="share-btn" data-platform="linkedin" aria-label="Share on LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </button>
-                            <button class="share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
-                                <i class="fab fa-whatsapp"></i>
-                            </button>
-                            <button class="share-btn" data-platform="copy" aria-label="Share on LinkedIn">
-                                <i class="fas fa-link"></i>
-                            </button>
+                        <div class="event-content">
+                            <h4>Annual Cultural Festival</h4>
+                            <p class="event-time"><i class="far fa-clock"></i> 10:00 AM - 8:00 PM</p>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> University Grounds</p>
+                            <p class="event-description">Celebrate diversity with music, dance, food, and more!</p>
+                            <button class="event-register-btn" data-event="Annual Cultural Festival">Register
+                                Now</button>
                         </div>
                     </div>
-                </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!--                    <i class="fas fa-calendar-alt"></i>
+        <!-- News/Blog Section -->
+        <section id="news" class="news-section">
+            <div class="container">
+                <h2 class="section-title">Latest News</h2>
+                <div class="news-grid">
+                    <article class="news-card" data-title="Record-Breaking Blood Donation Drive"
+                        data-url="https://yourwebsite.com/news/blood-drive-success">
+                        <div class="news-image">
+                            <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Blood+Drive+Success"
+                                alt="Blood Drive Success" loading="lazy">
+                            <span class="news-badge">Success Story</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar"></i> Jan 5, 2026</span>
+                                <span><i class="far fa-user"></i> Admin</span>
+                            </div>
+                            <h3>Record-Breaking Blood Donation Drive</h3>
+                            <p>Our latest blood donation camp collected 150 units, helping save over 450 lives. Thank
+                                you to
+                                all our amazing donors!</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            <div class="share-buttons">
+                                <span class="share-label"><i class="fas fa-share-alt"></i> Share:</span>
+                                <button class="share-btn" data-platform="facebook" aria-label="Share on Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button class="share-btn" data-platform="twitter" aria-label="Share on Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button class="share-btn" data-platform="linkedin" aria-label="Share on LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </button>
+                                <button class="share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                                <button class="share-btn" data-platform="copy" aria-label="Copy link">
+                                    <i class="fas fa-link"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="news-card" data-title="Partnership with Local Hospital"
+                        data-url="https://yourwebsite.com/news/hospital-partnership">
+                        <div class="news-image">
+                            <img src="https://via.placeholder.com/400x250/f093fb/ffffff?text=New+Partnership"
+                                alt="New Partnership" loading="lazy">
+                            <span class="news-badge">Announcement</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar"></i> Dec 28, 2025</span>
+                                <span><i class="far fa-user"></i> Admin</span>
+                            </div>
+                            <h3>Partnership with Local Hospital</h3>
+                            <p>We're excited to announce our new partnership with City Hospital for enhanced healthcare
+                                initiatives.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            <div class="share-buttons">
+                                <span class="share-label"><i class="fas fa-share-alt"></i> Share:</span>
+                                <button class="share-btn" data-platform="facebook" aria-label="Share on Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button class="share-btn" data-platform="twitter" aria-label="Share on Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button class="share-btn" data-platform="linkedin" aria-label="Share on LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </button>
+                                <button class="share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                                <button class="share-btn" data-platform="copy" aria-label="Copy link">
+                                    <i class="fas fa-link"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="news-card" data-title="Best Student Organization Award"
+                        data-url="https://yourwebsite.com/news/award-ceremony">
+                        <div class="news-image">
+                            <img src="https://via.placeholder.com/400x250/4facfe/ffffff?text=Award+Ceremony"
+                                alt="Award Ceremony" loading="lazy">
+                            <span class="news-badge">Achievement</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar"></i> Dec 15, 2025</span>
+                                <span><i class="far fa-user"></i> Admin</span>
+                            </div>
+                            <h3>Best Student Organization Award</h3>
+                            <p>Proud to receive the Best Student Organization Award for our outstanding community
+                                service
+                                efforts!</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            <div class="share-buttons">
+                                <span class="share-label"><i class="fas fa-share-alt"></i> Share:</span>
+                                <button class="share-btn" data-platform="facebook" aria-label="Share on Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button class="share-btn" data-platform="twitter" aria-label="Share on Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button class="share-btn" data-platform="linkedin" aria-label="Share on LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </button>
+                                <button class="share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                                <button class="share-btn" data-platform="copy" aria-label="Share on LinkedIn">
+                                    <i class="fas fa-link"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!--                    <i class="fas fa-calendar-alt"></i>
                             <h4>20+</h4>
                             <p>Camps Organized</p>
                         </div>
@@ -438,160 +577,162 @@
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="gallery-section">
-        <div class="container">
-            <h2 class="section-title">Photo Gallery</h2>
-            <p class="section-subtitle">Moments from our events and activities</p>
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2 class="section-title">Photo Gallery</h2>
+                <p class="section-subtitle">Moments from our events and activities</p>
 
-            <div class="gallery-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="events">Events</button>
-                <button class="filter-btn" data-filter="blood-drive">Blood Drives</button>
-                <button class="filter-btn" data-filter="community">Community Service</button>
-                <button class="filter-btn" data-filter="workshops">Workshops</button>
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="events">Events</button>
+                    <button class="filter-btn" data-filter="blood-drive">Blood Drives</button>
+                    <button class="filter-btn" data-filter="community">Community Service</button>
+                    <button class="filter-btn" data-filter="workshops">Workshops</button>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="events">
+                        <img src="https://via.placeholder.com/400x300/6366f1/ffffff?text=Annual+Gathering"
+                            alt="Annual Gathering" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Annual Gathering 2025</h4>
+                            <p>Our biggest event of the year</p>
+                            <button class="view-image-btn" aria-label="View image">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="blood-drive">
+                        <img src="https://via.placeholder.com/400x300/ef4444/ffffff?text=Blood+Drive" alt="Blood Drive"
+                            loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Spring Blood Drive</h4>
+                            <p>Saving lives together</p>
+                            <button class="view-image-btn" aria-label="View image">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="community">
+                        <img src="https://via.placeholder.com/400x300/10b981/ffffff?text=Community+Service"
+                            alt="Community Service" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Community Cleanup</h4>
+                            <p>Making a difference</p>
+                            <button class="view-image-btn" aria-label="View image">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="workshops">
+                        <img src="https://via.placeholder.com/400x300/f59e0b/ffffff?text=Workshop" alt="Workshop"
+                            loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Leadership Workshop</h4>
+                            <p>Skills for success</p>
+                            <button class="view-image-btn" aria-label="View image">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="events">
+                        <img src="https://via.placeholder.com/400x300/8b5cf6/ffffff?text=Awards+Night"
+                            alt="Awards Night" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Awards Ceremony</h4>
+                            <p>Celebrating achievements</p>
+                            <button class="view-image-btn" aria-label="View image">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="blood-drive">
+                        <img src="https://via.placeholder.com/400x300/ec4899/ffffff?text=Donor+Appreciation"
+                            alt="Donor Event" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Donor Appreciation</h4>
+                            <p>Thanking our heroes</p>
+                            <button class="view-image-btn" aria-label="View image">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="community">
+                        <img src="https://via.placeholder.com/400x300/14b8a6/ffffff?text=Food+Drive" alt="Food Drive"
+                            loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Food Drive Campaign</h4>
+                            <p>Fighting hunger</p>
+                            <button class="view-image-btn" aria-label="View image">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="workshops">
+                        <img src="https://via.placeholder.com/400x300/f97316/ffffff?text=Study+Session"
+                            alt="Study Session" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Study Sessions</h4>
+                            <p>Learning together</p>
+                            <button class="view-image-btn" aria-label="View image">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="load-more-btn" id="loadMoreGallery">
+                    Load More Photos
+                    <i class="fas fa-chevron-down"></i>
+                </button>
             </div>
+        </section>
 
-            <div class="gallery-grid">
-                <div class="gallery-item" data-category="events">
-                    <img src="https://via.placeholder.com/400x300/6366f1/ffffff?text=Annual+Gathering"
-                        alt="Annual Gathering" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Annual Gathering 2025</h4>
-                        <p>Our biggest event of the year</p>
-                        <button class="view-image-btn" aria-label="View image">
-                            <i class="fas fa-search-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="blood-drive">
-                    <img src="https://via.placeholder.com/400x300/ef4444/ffffff?text=Blood+Drive" alt="Blood Drive"
-                        loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Spring Blood Drive</h4>
-                        <p>Saving lives together</p>
-                        <button class="view-image-btn" aria-label="View image">
-                            <i class="fas fa-search-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="community">
-                    <img src="https://via.placeholder.com/400x300/10b981/ffffff?text=Community+Service"
-                        alt="Community Service" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Community Cleanup</h4>
-                        <p>Making a difference</p>
-                        <button class="view-image-btn" aria-label="View image">
-                            <i class="fas fa-search-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="workshops">
-                    <img src="https://via.placeholder.com/400x300/f59e0b/ffffff?text=Workshop" alt="Workshop"
-                        loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Leadership Workshop</h4>
-                        <p>Skills for success</p>
-                        <button class="view-image-btn" aria-label="View image">
-                            <i class="fas fa-search-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="events">
-                    <img src="https://via.placeholder.com/400x300/8b5cf6/ffffff?text=Awards+Night" alt="Awards Night"
-                        loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Awards Ceremony</h4>
-                        <p>Celebrating achievements</p>
-                        <button class="view-image-btn" aria-label="View image">
-                            <i class="fas fa-search-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="blood-drive">
-                    <img src="https://via.placeholder.com/400x300/ec4899/ffffff?text=Donor+Appreciation"
-                        alt="Donor Event" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Donor Appreciation</h4>
-                        <p>Thanking our heroes</p>
-                        <button class="view-image-btn" aria-label="View image">
-                            <i class="fas fa-search-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="community">
-                    <img src="https://via.placeholder.com/400x300/14b8a6/ffffff?text=Food+Drive" alt="Food Drive"
-                        loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Food Drive Campaign</h4>
-                        <p>Fighting hunger</p>
-                        <button class="view-image-btn" aria-label="View image">
-                            <i class="fas fa-search-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="workshops">
-                    <img src="https://via.placeholder.com/400x300/f97316/ffffff?text=Study+Session" alt="Study Session"
-                        loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Study Sessions</h4>
-                        <p>Learning together</p>
-                        <button class="view-image-btn" aria-label="View image">
-                            <i class="fas fa-search-plus"></i>
-                        </button>
+        <!-- Library Section -->
+        <section id="library" class="library-section">
+            <div class="container">
+                <h2 class="section-title">Library Resources</h2>
+                <div class="library-content">
+                    <p class="library-description">
+                        Access our collection of academic resources, study materials, and reference books.
+                        Our library is designed to support your educational journey.
+                    </p>
+                    <div class="library-grid">
+                        <div class="library-card">
+                            <i class="fas fa-book"></i>
+                            <h4>Books Collection</h4>
+                            <p>Extensive collection of textbooks and reference materials</p>
+                        </div>
+                        <div class="library-card">
+                            <i class="fas fa-file-pdf"></i>
+                            <h4>Digital Resources</h4>
+                            <p>Access e-books, PDFs, and online learning materials</p>
+                        </div>
+                        <div class="library-card">
+                            <i class="fas fa-laptop"></i>
+                            <h4>Study Space</h4>
+                            <p>Quiet environment for focused studying</p>
+                        </div>
+                        <div class="library-card">
+                            <i class="fas fa-clock"></i>
+                            <h4>24/7 Access</h4>
+                            <p>Online resources available anytime</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <button class="load-more-btn" id="loadMoreGallery">
-                Load More Photos
-                <i class="fas fa-chevron-down"></i>
-            </button>
-        </div>
-    </section>
-
-    <!-- Library Section -->
-    <section id="library" class="library-section">
-        <div class="container">
-            <h2 class="section-title">Library Resources</h2>
-            <div class="library-content">
-                <p class="library-description">
-                    Access our collection of academic resources, study materials, and reference books.
-                    Our library is designed to support your educational journey.
-                </p>
-                <div class="library-grid">
-                    <div class="library-card">
-                        <i class="fas fa-book"></i>
-                        <h4>Books Collection</h4>
-                        <p>Extensive collection of textbooks and reference materials</p>
-                    </div>
-                    <div class="library-card">
-                        <i class="fas fa-file-pdf"></i>
-                        <h4>Digital Resources</h4>
-                        <p>Access e-books, PDFs, and online learning materials</p>
-                    </div>
-                    <div class="library-card">
-                        <i class="fas fa-laptop"></i>
-                        <h4>Study Space</h4>
-                        <p>Quiet environment for focused studying</p>
-                    </div>
-                    <div class="library-card">
-                        <i class="fas fa-clock"></i>
-                        <h4>24/7 Access</h4>
-                        <p>Online resources available anytime</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
 
+
+    </main>
 
     <!-- Floating Share Bar -->
     <div class="floating-share-bar">
@@ -611,6 +752,24 @@
             <i class="fas fa-envelope"></i>
         </button>
     </div>
+
+    <!-- Footer -->
+    <footer class="item-footer"
+        style="background: var(--secondary-color); color: var(--white); padding: 40px 0; text-align: center;">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Metropolitan University Chatrodol. All rights reserved.</p>
+                <div class="social-links" style="margin-top: 20px;">
+                    <a href="#" style="color: white; margin: 0 10px; font-size: 1.5rem;"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: white; margin: 0 10px; font-size: 1.5rem;"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: white; margin: 0 10px; font-size: 1.5rem;"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
 
@@ -656,7 +815,8 @@
     <!-- Cookie Consent Banner -->
     <div id="cookieConsent" class="cookie-consent">
         <div class="cookie-content">
-            <p><i class="fas fa-cookie-bite"></i> We use cookies to enhance your experience. By continuing to visit this
+            <p><i class="fas fa-cookie-bite"></i> We use cookies to enhance your experience. By continuing to visit
+                this
                 site you agree to our use of cookies.</p>
             <div class="cookie-buttons">
                 <button class="cookie-accept">Accept</button>
@@ -734,7 +894,8 @@
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>Simply subscribe to our newsletter or contact us directly. We welcome all students who are
+                        <p>Simply subscribe to our newsletter or contact us directly. We welcome all students who
+                            are
                             passionate about making a difference!</p>
                     </div>
                 </div>
@@ -857,8 +1018,9 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Student Organization. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a
-                        href="#terms">Terms of Service</a></p>
+                <p>&copy; 2026 Student Organization. All rights reserved. | <a href="#privacy">Privacy Policy</a> |
+                    <a href="#terms">Terms of Service</a>
+                </p>
             </div>
         </div>
     </footer>

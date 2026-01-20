@@ -38,6 +38,7 @@ def api_root(request):
             'site_content': {
                 'site_settings': '/api/site-settings',
                 'hero_sections': '/api/hero-sections',
+                'slider_content': '/api/slider-content',
                 'about': '/api/about',
                 'services': '/api/services',
                 'team': '/api/team',
@@ -177,6 +178,82 @@ def get_news_detail(request, slug):
             'success': False,
             'message': 'Article not found'
         }, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+def get_slider_content(request):
+    """Get content for homepage slider (Hero + Featured Items)"""
+    slides = []
+    
+    # 1. Hero Sections
+    heroes = HeroSection.objects.filter(is_active=True).order_by('order')
+    for hero in heroes:
+        slides.append({
+            'type': 'hero',
+            'id': hero.id,
+            'title': hero.title,
+            'subtitle': hero.subtitle,
+            'image': hero.background_image,
+            'link': hero.cta_link,
+            'cta_text': hero.cta_text,
+            'order': hero.order
+        })
+        
+    # 2. Featured Events
+    events = Event.objects.filter(is_active=True, show_in_slider=True).order_by('date')
+    for event in events:
+        slides.append({
+            'type': 'event',
+            'id': event.id,
+            'title': event.title,
+            'subtitle': f"Event: {event.date} at {event.location}",
+            'image': event.image,
+            'link': '#events',  # Could link to specific event detail if page existed
+            'cta_text': 'View Event',
+            'order': 10  # Default order for mixed content
+        })
+        
+    # 3. Featured News
+    news = NewsArticle.objects.filter(is_published=True, show_in_slider=True).order_by('-published_date')
+    for article in news:
+        slides.append({
+            'type': 'news',
+            'id': article.id,
+            'title': article.title,
+            'subtitle': article.excerpt[:100] + '...',
+            'image': article.image,
+            'link': f'#news-{article.slug}',
+            'cta_text': 'Read Article',
+            'order': 10
+        })
+
+    # 4. Gallery Images
+    gallery = Gallery.objects.filter(is_active=True, show_in_slider=True).order_by('-created_at')
+    for item in gallery:
+        slides.append({
+            'type': 'gallery',
+            'id': item.id,
+            'title': item.title,
+            'subtitle': item.description[:100] if item.description else '',
+            'image': item.image,  # Handles both URL and ImageField URL
+            'link': '#gallery',
+            'cta_text': 'View Gallery',
+            'order': 10
+        })
+
+    # Sort slides
+    # Hero sections have explicit order, others default to 10 so they appear after (or mixed)
+    # We can create a simple strategy: Hero first, then others by date/creation?
+    # For now, let's trust the user order or just append. 
+    # Or strict sort by 'order' key if we want to manage it globally? 
+    # Let's simple sort by order
+    slides.sort(key=lambda x: x.get('order', 10))
+
+    return Response({
+        'success': True,
+        'count': len(slides),
+        'slides': slides
+    })
 
 
 @api_view(['POST'])

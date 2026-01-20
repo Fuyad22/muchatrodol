@@ -8,6 +8,7 @@ urlpatterns = [
     # Site content endpoints
     path('site-settings', views.get_site_settings, name='site-settings'),
     path('hero-sections', views.get_hero_sections, name='hero-sections'),
+    path('slider-content', views.get_slider_content, name='slider-content'),
     path('about', views.get_about, name='about'),
     path('services', views.get_services, name='services'),
     path('team', views.get_team, name='team'),

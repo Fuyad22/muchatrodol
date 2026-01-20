@@ -143,8 +143,8 @@ class TestimonialAdmin(admin.ModelAdmin):
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'is_active', 'created_at', 'order']
-    list_filter = ['is_active', 'category', 'created_at']
+    list_display = ['title', 'category', 'is_active', 'show_in_slider', 'created_at', 'order']
+    list_filter = ['is_active', 'show_in_slider', 'category', 'created_at']
     search_fields = ['title', 'description', 'category']
     actions = ['activate', 'deactivate']
     
@@ -179,8 +179,8 @@ class FAQAdmin(admin.ModelAdmin):
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display = ['title', 'date', 'location', 'is_active', 'created_at']
-    list_filter = ['is_active', 'date', 'created_at']
+    list_display = ['title', 'date', 'location', 'is_active', 'show_in_slider', 'created_at']
+    list_filter = ['is_active', 'show_in_slider', 'date', 'created_at']
     search_fields = ['title', 'location', 'description']
     readonly_fields = ['created_at']
     ordering = ['-date']
@@ -196,7 +196,7 @@ class EventAdmin(admin.ModelAdmin):
             'fields': ('description', 'image')
         }),
         ('Status', {
-            'fields': ('is_active', 'created_at')
+            'fields': ('is_active', 'show_in_slider', 'created_at')
         }),
     )
     
@@ -213,8 +213,8 @@ class EventAdmin(admin.ModelAdmin):
 
 @admin.register(NewsArticle)
 class NewsArticleAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'is_published', 'published_date']
-    list_filter = ['is_published', 'published_date', 'author']
+    list_display = ['title', 'author', 'is_published', 'show_in_slider', 'published_date']
+    list_filter = ['is_published', 'show_in_slider', 'published_date', 'author']
     search_fields = ['title', 'excerpt', 'content', 'author']
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ['published_date']
@@ -231,7 +231,7 @@ class NewsArticleAdmin(admin.ModelAdmin):
             'fields': ('excerpt', 'content', 'image')
         }),
         ('Publishing', {
-            'fields': ('is_published', 'published_date')
+            'fields': ('is_published', 'show_in_slider', 'published_date')
         }),
     )
     

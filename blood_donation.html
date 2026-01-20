@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation - Metropolitan University Chatrodol</title>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Metropolitan University Chatrodol",
+          "url": "https://yourwebsite.com",
+          "logo": "https://example.com/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-555-123-4567",
+            "contactType": "Customer Service"
+          }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar-container">
+        <nav class="navbar" id="navbar">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Metropolitan_University_Sylhet_Logo.png/220px-Metropolitan_University_Sylhet_Logo.png"
+                    alt="MU Chatrodol Logo">
+                <div class="logo-text">
+                    <h1>মেট্রোপলিটন বিশ্ববিদ্যালয়</h1>
+                    <h2>ছাত্রদল</h2>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="blood_donation.html" class="nav-link active">Blood Donation</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="index.html#events" class="nav-link">Events</a>
+                <a href="index.html#library" class="nav-link">Library</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="subscribe-btn" id="navSubscribeBtn">Subscribe</button>
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero"
+            style="background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); padding-top: 120px; padding-bottom: 60px; color: white; text-align: center;">
+            <div class="container">
+                <h1 class="section-title" style="color: white; margin-bottom: 1rem;">Blood Donation Initiative</h1>
+                <p>Your blood can save a life. Join our community of donors today.</p>
+            </div>
+        </section>
+
+        <!-- Donation Form Section -->
+        <section class="donation-form-section" style="padding: 60px 0;">
+            <div class="container">
+                <div class="form-card"
+                    style="background: var(--card-bg); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h3
+                        style="text-align: center; margin-bottom: 30px; font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--text-color);">
+                        Register as a Donor</h3>
+
+                    <form id="bloodDonationForm" style="display: grid; gap: 20px;">
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="name"
+                                    style="display: block; margin-bottom: 0.5rem; color: var(--text-color);">Full
+                                    Name</label>
+                                <input type="text" id="name" name="name" required
+                                    style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; background: rgba(255,255,255,0.9);">
+                            </div>
+                            <div class="form-group">
+                                <label for="email"
+                                    style="display: block; margin-bottom: 0.5rem; color: var(--text-color);">Email
+                                    Address</label>
+                                <input type="email" id="email" name="email" required
+                                    style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; background: rgba(255,255,255,0.9);">
+                            </div>
+                        </div>
+
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="phone"
+                                    style="display: block; margin-bottom: 0.5rem; color: var(--text-color);">Phone
+                                    Number</label>
+                                <input type="tel" id="phone" name="phone" required
+                                    style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; background: rgba(255,255,255,0.9);">
+                            </div>
+                            <div class="form-group">
+                                <label for="age"
+                                    style="display: block; margin-bottom: 0.5rem; color: var(--text-color);">Age</label>
+                                <input type="number" id="age" name="age" min="18" max="65" required
+                                    style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; background: rgba(255,255,255,0.9);">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="blood_type"
+                                style="display: block; margin-bottom: 0.5rem; color: var(--text-color);">Blood
+                                Type</label>
+                            <select id="blood_type" name="blood_type" required
+                                style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; background: rgba(255,255,255,0.9);">
+                                <option value="" disabled selected>Select Blood Type</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address"
+                                style="display: block; margin-bottom: 0.5rem; color: var(--text-color);">Current
+                                Address</label>
+                            <textarea id="address" name="address" rows="2" required
+                                style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; background: rgba(255,255,255,0.9);"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="medical_conditions"
+                                style="display: block; margin-bottom: 0.5rem; color: var(--text-color);">Medical
+                                Conditions (Optional)</label>
+                            <textarea id="medical_conditions" name="medical_conditions" rows="3"
+                                placeholder="Any existing medical conditions or allergies?"
+                                style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; background: rgba(255,255,255,0.9);"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn"
+                            style="background: var(--primary-color); color: white; border: none; padding: 15px 30px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%; margin-top: 10px;">Register
+                            as Donor</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>MU Chatrodol</h2>
+                <p>Empowering students to build a better future.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Metropolitan University Chatrodol. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -11,6 +11,7 @@ class Event(models.Model):
     description = models.TextField()
     image = models.CharField(max_length=500, blank=True, null=True)
     is_active = models.BooleanField(default=True)
+    show_in_slider = models.BooleanField(default=False, help_text="Show this event in the homepage slider")
     created_at = models.DateTimeField(default=timezone.now)
     
     class Meta:
@@ -29,6 +30,7 @@ class NewsArticle(models.Model):
     author = models.CharField(max_length=100, default='Admin')
     published_date = models.DateTimeField(default=timezone.now)
     is_published = models.BooleanField(default=True)
+    show_in_slider = models.BooleanField(default=False, help_text="Show this article in the homepage slider")
     
     class Meta:
         ordering = ['-published_date']
@@ -209,6 +211,8 @@ class TeamMember(models.Model):
         ('vice_president', 'Vice President'),
         ('secretary', 'Secretary'),
         ('treasurer', 'Treasurer'),
+        ('event_coordinator', 'Event Coordinator'),
+        ('public_relations', 'Public Relations'),
         ('member', 'Member'),
         ('advisor', 'Advisor'),
     ]
@@ -216,6 +220,7 @@ class TeamMember(models.Model):
     name = models.CharField(max_length=255)
     position = models.CharField(max_length=50, choices=POSITION_CHOICES)
     bio = models.TextField(blank=True, null=True)
+    achievements = models.TextField(blank=True, null=True)
     photo = models.CharField(max_length=500, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
@@ -259,6 +264,7 @@ class Gallery(models.Model):
     image = models.CharField(max_length=500)
     category = models.CharField(max_length=100, blank=True, null=True)
     is_active = models.BooleanField(default=True)
+    show_in_slider = models.BooleanField(default=False, help_text="Show this image in the homepage slider")
     created_at = models.DateTimeField(default=timezone.now)
     order = models.IntegerField(default=0)
     

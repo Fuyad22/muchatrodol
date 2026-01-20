@@ -229,19 +229,24 @@ async function loadTeamMembers() {
                 data.team.forEach(member => {
                     const memberCard = document.createElement('div');
                     memberCard.className = 'member-card';
-                    memberCard.setAttribute('data-name', member.name);
-                    memberCard.setAttribute('data-role', member.position);
-                    memberCard.setAttribute('data-email', member.email || 'N/A');
-                    memberCard.setAttribute('data-phone', member.phone || 'N/A');
-                    memberCard.setAttribute('data-bio', member.bio || 'No bio available');
-                    memberCard.setAttribute('data-achievements', 'Active member,Community leader,Event organizer');
-                    memberCard.setAttribute('onclick', 'openMemberModal(this)');
+                    // Store data in dataset
+                    memberCard.dataset.name = member.name;
+                    memberCard.dataset.role = member.position;
+                    memberCard.dataset.email = member.email || 'N/A';
+                    memberCard.dataset.phone = member.phone || 'N/A';
+                    memberCard.dataset.bio = member.bio || 'No bio available';
+                    memberCard.dataset.achievements = 'Active member,Community leader,Event organizer';
+
+                    // Add click event listener directly
+                    memberCard.addEventListener('click', function () {
+                        openMemberModal(this);
+                    });
 
                     memberCard.innerHTML = `
                         <div class="member-avatar">
-                            ${member.photo ? `<img src="${member.photo}" alt="${member.name}">` : '<i class="fas fa-user"></i>'}
+                            ${member.photo ? `<img src="${member.photo}" alt="${member.name}">` : '<i class="fas fa-user-circle"></i>'}
                         </div>
-                        <h4>${member.name}</h4>
+                        <h4 class="member-name">${member.name}</h4>
                         <p class="member-role">${member.position}</p>
                         <p class="member-info">${member.bio ? member.bio.substring(0, 80) + '...' : 'Click for details'}</p>
                     `;
@@ -251,6 +256,19 @@ async function loadTeamMembers() {
         }
     } catch (error) {
         console.error('Error loading team members:', error);
+    }
+}
+
+// Initialize Team Section Event Listeners (for static content)
+function initializeTeamEvents() {
+    const teamGrid = document.querySelector('.team-grid');
+    if (teamGrid) {
+        teamGrid.addEventListener('click', (e) => {
+            const card = e.target.closest('.member-card');
+            if (card) {
+                openMemberModal(card);
+            }
+        });
     }
 }
 
@@ -345,14 +363,15 @@ async function loadFAQs() {
 }
 
 // Load Hero Sections Dynamically
-async function loadHeroSections() {
+// Load Slider Content Dynamically (Hero + Featured)
+async function loadSliderContent() {
     try {
-        console.log('Fetching hero sections from:', `${API_URL}/hero-sections`);
-        const response = await fetch(`${API_URL}/hero-sections`);
+        console.log('Fetching slider content from:', `${API_URL}/slider-content`);
+        const response = await fetch(`${API_URL}/slider-content`);
         const data = await response.json();
-        console.log('Hero sections data received:', data);
+        console.log('Slider content received:', data);
 
-        if (data.success && data.heroes && data.heroes.length > 0) {
+        if (data.success && data.slides && data.slides.length > 0) {
             const sliderContainer = document.querySelector('.slider-container');
             const dotsContainer = document.querySelector('.slider-dots');
 
@@ -360,22 +379,28 @@ async function loadHeroSections() {
                 sliderContainer.innerHTML = '';
                 dotsContainer.innerHTML = '';
 
-                data.heroes.forEach((hero, index) => {
+                data.slides.forEach((slideItem, index) => {
                     // Create slide
                     const slide = document.createElement('div');
                     slide.className = 'slide';
                     if (index === 0) slide.classList.add('active');
+                    // Add type class for specific styling if needed
+                    slide.classList.add(`slide-type-${slideItem.type}`);
 
                     slide.innerHTML = `
                         <div class="slide-content">
-                            <h2>${hero.title}</h2>
-                            <p>${hero.subtitle}</p>
-                            <a href="${hero.cta_link}" class="cta-btn">${hero.cta_text}</a>
+                            ${slideItem.type !== 'hero' ? `<span class="slide-badge">${slideItem.type.toUpperCase()}</span>` : ''}
+                            <h2>${slideItem.title}</h2>
+                            <p>${slideItem.subtitle}</p>
+                            <a href="${slideItem.link}" class="cta-btn">${slideItem.cta_text || 'Learn More'}</a>
                         </div>
                     `;
 
-                    if (hero.background_image) {
-                        slide.style.backgroundImage = `url(${hero.background_image})`;
+                    if (slideItem.image) {
+                        slide.style.backgroundImage = `url(${slideItem.image})`;
+                    } else {
+                        // Fallback for items without image
+                        slide.style.backgroundColor = '#1a472a'; // Primary Color
                     }
 
                     sliderContainer.appendChild(slide);
@@ -390,7 +415,7 @@ async function loadHeroSections() {
             }
         }
     } catch (error) {
-        console.error('Error loading hero sections:', error);
+        console.error('Error loading slider content:', error);
     }
 }
 
@@ -411,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load all dynamic content from Django backend
     Promise.all([
-        loadHeroSections(),
+        loadSliderContent(),
         loadEvents(),
         loadNews(),
         loadTeamMembers(),
@@ -420,6 +445,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ]).then(() => {
         // Initialize Gallery Events after content is loaded
         initializeGalleryEvents();
+        initializeTeamEvents();
+        handleBloodDonation(); // Initialize blood donation form
 
         // Hide preloader after all content is loaded
         const preloader = document.querySelector('.preloader, #preloader, [class*="loader"], [class*="spinner"]');
@@ -494,13 +521,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Slider Functionality - FIXED: Moved outside scroll listener
+    // Slider Functionality
     let currentSlideIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevSlideBtn');
+    const nextBtn = document.getElementById('nextSlideBtn');
+    const dotContainer = document.getElementById('sliderDots');
 
     function showSlide(index) {
-        if (slides.length === 0 || dots.length === 0) return;
+        if (slides.length === 0) return;
 
         // Ensure index is within bounds
         if (index >= slides.length) {
@@ -522,25 +552,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Show current slide
         slides[currentSlideIndex].classList.add('active');
-        dots[currentSlideIndex].classList.add('active');
+        if (dots[currentSlideIndex]) dots[currentSlideIndex].classList.add('active');
     }
 
     function changeSlide(direction) {
         showSlide(currentSlideIndex + direction);
     }
 
-    function currentSlide(index) {
-        showSlide(index);
+    // Event Listeners for Slider
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => changeSlide(-1));
     }
 
-    // Make functions globally available for onclick handlers
-    window.changeSlide = changeSlide;
-    window.currentSlide = currentSlide;
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => changeSlide(1));
+    }
+
+    if (dotContainer) {
+        dotContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('dot')) {
+                const index = parseInt(e.target.getAttribute('data-index'));
+                if (!isNaN(index)) {
+                    showSlide(index);
+                }
+            }
+        });
+    }
 
     // Auto slide every 5 seconds
     let autoSlideInterval = setInterval(() => {
         changeSlide(1);
     }, 5000);
+
+    // Scroll Animation Observer
+    const sectionObserverOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, sectionObserver) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                sectionObserver.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, sectionObserverOptions);
+
+    // Observe all sections and other desired elements
+    document.querySelectorAll('section, .footer, .hero-slider').forEach(section => {
+        section.classList.add('fade-in-section');
+        sectionObserver.observe(section);
+    });
 
     // Pause auto slide on hover
     const sliderSection = document.querySelector('.slider-section');
@@ -1690,6 +1754,66 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (data.errors) {
                         console.error('Validation errors:', data.errors);
                     }
+                }
+
+            } catch (error) {
+                console.error('Blood donation error:', error);
+                showToast('Failed to connect to server. Please try again.', 'error', 'Network Error');
+            } finally {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+
+    // Handle Blood Donation Form
+    function handleBloodDonation() {
+        const bloodForm = document.getElementById('bloodDonationForm');
+        if (!bloodForm) return;
+
+        bloodForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = bloodForm.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+
+            try {
+                // Collect form data - using names from HTML
+                const formData = {
+                    name: bloodForm.querySelector('input[name="name"]').value.trim(),
+                    age: parseInt(bloodForm.querySelector('input[name="age"]').value),
+                    email: bloodForm.querySelector('input[name="email"]').value.trim(),
+                    phone: bloodForm.querySelector('input[name="phone"]').value.trim(),
+                    blood_type: bloodForm.querySelector('select[name="blood_type"]').value,
+                    address: bloodForm.querySelector('textarea[name="address"]').value.trim(),
+                    medical_conditions: bloodForm.querySelector('textarea[name="medical_conditions"]').value.trim()
+                };
+
+                // Basic validation
+                if (!formData.name || !formData.email || !formData.phone || !formData.blood_type || !formData.address) {
+                    showToast('Please fill in all required fields.', 'error');
+                    return;
+                }
+
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...';
+                submitBtn.disabled = true;
+
+                // Send to backend
+                const response = await fetch(`${API_URL}/donate-blood`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    showToast(data.message || 'Registration successful!', 'success', 'Registered');
+                    bloodForm.reset();
+                } else {
+                    showToast(data.message || 'Registration failed.', 'error', 'Error');
                 }
 
             } catch (error) {

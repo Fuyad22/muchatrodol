@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Metropolitan University Chatrodol</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar-container">
+        <nav class="navbar" id="navbar">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Metropolitan_University_Sylhet_Logo.png/220px-Metropolitan_University_Sylhet_Logo.png"
+                    alt="MU Chatrodol Logo">
+                <div class="logo-text">
+                    <h1>মেট্রোপলিটন বিশ্ববিদ্যালয়</h1>
+                    <h2>ছাত্রদল</h2>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="blood_donation.html" class="nav-link">Blood Donation</a>
+                <a href="gallery.html" class="nav-link active">Gallery</a>
+                <a href="index.html#events" class="nav-link">Events</a>
+                <a href="index.html#library" class="nav-link">Library</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="subscribe-btn" id="navSubscribeBtn">Subscribe</button>
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero"
+            style="background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); padding-top: 120px; padding-bottom: 60px; color: white; text-align: center;">
+            <div class="container">
+                <h1 class="section-title" style="color: white; margin-bottom: 1rem;">Our Gallery</h1>
+                <p>Capturing the moments that define our journey and impact.</p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section" id="gallery" style="padding: 60px 0;">
+            <div class="container">
+
+                <!-- Gallery Filter -->
+                <div class="gallery-filter"
+                    style="display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
+                    <button class="filter-btn active" data-filter="all">All Photos</button>
+                    <button class="filter-btn" data-filter="Events">Events</button>
+                    <button class="filter-btn" data-filter="Community Service">Community Service</button>
+                    <button class="filter-btn" data-filter="Social">Social</button>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-item" data-category="Community Service">
+                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800"
+                            alt="Community Cleanup">
+                        <div class="gallery-overlay">
+                            <h4>Community Cleanup</h4>
+                            <p>Volunteers cleaned up the local park.</p>
+                            <button class="view-image-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-item" data-category="Events">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800"
+                            alt="Leadership Workshop">
+                        <div class="gallery-overlay">
+                            <h4>Leadership Workshop</h4>
+                            <p>Developing future leaders.</p>
+                            <button class="view-image-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-item" data-category="Social">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800"
+                            alt="Team Building">
+                        <div class="gallery-overlay">
+                            <h4>Team Building</h4>
+                            <p>Fun day out with the team.</p>
+                            <button class="view-image-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 4 -->
+                    <div class="gallery-item" data-category="Events">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800" alt="Annual Gala">
+                        <div class="gallery-overlay">
+                            <h4>Annual Gala</h4>
+                            <p>Celebrating our achievements.</p>
+                            <button class="view-image-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <!-- Gallery Item 5 -->
+                    <div class="gallery-item" data-category="Community Service">
+                        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800" alt="Food Drive">
+                        <div class="gallery-overlay">
+                            <h4>Food Drive</h4>
+                            <p>Distributing food to those in need.</p>
+                            <button class="view-image-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <!-- Gallery Item 6 -->
+                    <div class="gallery-item" data-category="Social">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800"
+                            alt="Student Meetup">
+                        <div class="gallery-overlay">
+                            <h4>Student Meetup</h4>
+                            <p>Connecting students across campus.</p>
+                            <button class="view-image-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>MU Chatrodol</h2>
+                <p>Empowering students to build a better future.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Metropolitan University Chatrodol. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="Gallery Image">
+            <div class="lightbox-caption">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDesc"></p>
+                <div class="lightbox-counter">
+                    <span id="currentImageIndex">1</span> / <span id="totalImages">1</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
