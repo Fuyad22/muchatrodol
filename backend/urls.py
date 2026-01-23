@@ -29,6 +29,8 @@ def serve_index(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('', serve_index, name='home'),
+    path('index.html', serve_index, name='home-index'),
 ]
 
 # Serve static files in development
@@ -38,6 +40,4 @@ if settings.DEBUG:
         re_path(r'^(?P<path>.*\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))$', serve, {
             'document_root': settings.BASE_DIR,
         }),
-        path('index.html', serve_index, name='home-index'),
-        path('', serve_index, name='home'),
     ]
