@@ -185,7 +185,7 @@ class EventAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at']
     ordering = ['-date']
     list_per_page = 20
-    date_hierarchy = 'date'
+
     actions = ['mark_active', 'mark_inactive']
     
     fieldsets = (
@@ -220,7 +220,7 @@ class NewsArticleAdmin(admin.ModelAdmin):
     readonly_fields = ['published_date']
     ordering = ['-published_date']
     list_per_page = 20
-    date_hierarchy = 'published_date'
+
     actions = ['publish_articles', 'unpublish_articles']
     
     fieldsets = (
@@ -254,7 +254,7 @@ class ContactMessageAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at']
     ordering = ['-created_at']
     list_per_page = 25
-    date_hierarchy = 'created_at'
+
     actions = ['mark_as_read', 'mark_as_replied', 'mark_as_archived']
     
     fieldsets = (
@@ -293,7 +293,7 @@ class NewsletterSubscriberAdmin(admin.ModelAdmin):
     readonly_fields = ['subscribed_at']
     ordering = ['-subscribed_at']
     list_per_page = 50
-    date_hierarchy = 'subscribed_at'
+
     actions = ['activate_subscribers', 'deactivate_subscribers']
     
     def activate_subscribers(self, request, queryset):
@@ -320,7 +320,7 @@ class EventRegistrationAdmin(admin.ModelAdmin):
     readonly_fields = ['registered_at']
     ordering = ['-registered_at']
     list_per_page = 30
-    date_hierarchy = 'registered_at'
+
     actions = ['export_registrations']
     
     fieldsets = (
@@ -349,7 +349,7 @@ class BloodDonationAdmin(admin.ModelAdmin):
     readonly_fields = ['registered_at']
     ordering = ['-registered_at']
     list_per_page = 30
-    date_hierarchy = 'registered_at'
+
     actions = ['mark_confirmed', 'mark_completed', 'mark_cancelled']
     
     fieldsets = (
