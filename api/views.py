@@ -1,6 +1,8 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+import traceback
+
 from django.core.mail import send_mail
 from django.conf import settings
 from django.db.models import Count
@@ -117,12 +119,20 @@ def get_testimonials(request):
 @api_view(['GET'])
 def get_gallery(request):
     """Get active gallery images"""
-    category = request.GET.get('category', None)
-    gallery = Gallery.objects.filter(is_active=True)
-    if category:
-        gallery = gallery.filter(category=category)
-    serializer = GallerySerializer(gallery, many=True)
-    return Response({'success': True, 'gallery': serializer.data})
+    try:
+        category = request.GET.get('category', None)
+        gallery = Gallery.objects.filter(is_active=True)
+        if category:
+            gallery = gallery.filter(category=category)
+        serializer = GallerySerializer(gallery, many=True)
+        return Response({'success': True, 'gallery': serializer.data})
+    except Exception as e:
+        return Response({
+            'success': False, 
+            'message': 'Internal Server Error',
+            'error': str(e),
+            'traceback': traceback.format_exc()
+        }, status=500)
 
 
 @api_view(['GET'])
