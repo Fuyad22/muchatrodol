@@ -103,7 +103,9 @@ function removeToast(toast) {
 }
 
 // API Configuration - Point to Django backend on port 8000
-const API_URL = 'http://localhost:8000/api';
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:8000/api'
+    : '/api';
 
 console.log('API URL configured as:', API_URL);
 
@@ -111,7 +113,7 @@ console.log('API URL configured as:', API_URL);
 async function loadEvents() {
     try {
         console.log('Fetching events from:', `${API_URL}/events`);
-        const response = await fetch(`${API_URL}/events`);
+        const response = await fetch(`${API_URL}/events?t=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
         console.log('Events data received:', data);
 
@@ -154,7 +156,7 @@ async function loadEvents() {
 async function loadNews() {
     try {
         console.log('Fetching news from:', `${API_URL}/news?limit=3`);
-        const response = await fetch(`${API_URL}/news?limit=3`);
+        const response = await fetch(`${API_URL}/news?limit=3&t=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
         console.log('News data received:', data);
 
@@ -217,7 +219,7 @@ async function loadNews() {
 async function loadTeamMembers() {
     try {
         console.log('Fetching team members from:', `${API_URL}/team`);
-        const response = await fetch(`${API_URL}/team`);
+        const response = await fetch(`${API_URL}/team?t=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
         console.log('Team data received:', data);
 
@@ -276,7 +278,7 @@ function initializeTeamEvents() {
 async function loadGallery() {
     try {
         console.log('Fetching gallery from:', `${API_URL}/gallery`);
-        const response = await fetch(`${API_URL}/gallery`);
+        const response = await fetch(`${API_URL}/gallery?t=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
         console.log('Gallery data received:', data);
 
@@ -313,7 +315,7 @@ async function loadGallery() {
 async function loadFAQs() {
     try {
         console.log('Fetching FAQs from:', `${API_URL}/faqs`);
-        const response = await fetch(`${API_URL}/faqs`);
+        const response = await fetch(`${API_URL}/faqs?t=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
         console.log('FAQs data received:', data);
 
@@ -367,7 +369,7 @@ async function loadFAQs() {
 async function loadSliderContent() {
     try {
         console.log('Fetching slider content from:', `${API_URL}/slider-content`);
-        const response = await fetch(`${API_URL}/slider-content`);
+        const response = await fetch(`${API_URL}/slider-content?t=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
         console.log('Slider content received:', data);
 
