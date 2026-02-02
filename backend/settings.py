@@ -82,9 +82,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+# Detect if running on Vercel
+IS_VERCEL = os.getenv('VERCEL', False) or os.getenv('VERCEL_ENV', False)
 
+# Database configuration with Vercel enforcement
 if os.getenv('MONGODB_URI'):
     DATABASES = {
         'default': {
@@ -96,13 +97,41 @@ if os.getenv('MONGODB_URI'):
             }  
         }
     }
-else:
+    print(f"✅ Using MongoDB: {os.getenv('MONGODB_NAME', 'muchatrodol_db')}")
+    print(f"   Connection: {os.getenv('MONGODB_URI')[:30]}...")
+elif IS_VERCEL:
+    # CRITICAL: On Vercel, we MUST use MongoDB (file system is ephemeral)
+    print("=" * 80)
+    print("❌ CRITICAL ERROR: Running on Vercel without MongoDB!")
+    print("=" * 80)
+    print("⚠️  The MONGODB_URI environment variable is NOT set.")
+    print("⚠️  On Vercel, SQLite changes are LOST after each deployment.")
+    print("⚠️  Admin panel updates will NOT persist!")
+    print("")
+    print("🔧 FIX: Set MONGODB_URI in Vercel Project Settings:")
+    print("   1. Go to your Vercel project dashboard")
+    print("   2. Settings → Environment Variables")
+    print("   3. Add MONGODB_URI with your MongoDB Atlas connection string")
+    print("   4. Redeploy your application")
+    print("=" * 80)
+    
+    # Use SQLite as fallback but with a clear warning
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+    print(f"⚠️  FALLBACK: Using ephemeral SQLite (data will be LOST!)")
+else:
+    # Local development - SQLite is fine
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+    print(f"✅ Using SQLite for local development: {BASE_DIR / 'db.sqlite3'}")
 
 
 # Password validation

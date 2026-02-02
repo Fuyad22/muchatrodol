@@ -32,10 +32,26 @@ from .serializers import (
 @api_view(['GET'])
 def api_root(request):
     """API root - list all available endpoints"""
+    import os
+    from django.conf import settings as django_settings
+    
+    # Get database engine info
+    db_engine = django_settings.DATABASES['default']['ENGINE']
+    db_type = 'MongoDB' if 'djongo' in db_engine else 'SQLite' if 'sqlite' in db_engine else 'Unknown'
+    
+    # Check if on Vercel
+    is_vercel = os.getenv('VERCEL', False) or os.getenv('VERCEL_ENV', False)
+    
     return Response({
         'success': True,
         'message': 'Student Organization API',
         'version': '1.0',
+        'database': {
+            'type': db_type,
+            'engine': db_engine,
+            'environment': 'Vercel' if is_vercel else 'Local/Other',
+            'warning': '⚠️ Using SQLite on Vercel - data will be lost!' if (is_vercel and db_type == 'SQLite') else None
+        },
         'endpoints': {
             'site_content': {
                 'site_settings': '/api/site-settings',
