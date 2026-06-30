@@ -2,8 +2,7 @@
     "version": 2,
     "functions": {
         "backend/wsgi.py": {
-            "runtime": "@vercel/python",
-            "maxLambdaSize": "15mb"
+            "runtime": "@vercel/python"
         }
     },
     "routes": [
