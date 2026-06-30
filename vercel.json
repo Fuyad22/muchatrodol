@@ -11,7 +11,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "backend/wsgi.py"
+            "dest": "api/index.py"
         }
     ]
 }
