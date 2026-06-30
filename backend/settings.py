@@ -128,15 +128,18 @@ if use_sqlite_fallback:
         print("[WARNING] On Vercel, SQLite changes are LOST after each deployment.")
         print("[WARNING] Admin panel updates will NOT persist!")
         print("=" * 80)
+        db_path = '/tmp/db.sqlite3'
+    else:
+        db_path = BASE_DIR / 'db.sqlite3'
     
     # Use SQLite database
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'NAME': db_path,
         }
     }
-    print(f"[OK] Using SQLite database: {BASE_DIR / 'db.sqlite3'}")
+    print(f"[OK] Using SQLite database: {db_path}")
 
 
 

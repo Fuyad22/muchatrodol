@@ -7,11 +7,12 @@ django.setup()
 
 from api.models import TeamMember
 
-print("Updating Team Members...")
-
-# Clear existing team data to avoid duplicates/old data
-deleted_count, _ = TeamMember.objects.all().delete()
-print(f"Deleted {deleted_count} existing team members.")
+def run():
+    print("Updating Team Members...")
+    
+    # Clear existing team data to avoid duplicates/old data
+    deleted_count, _ = TeamMember.objects.all().delete()
+    print(f"Deleted {deleted_count} existing team members.")
 
 # Define the new 16 team members
 team_data = [
@@ -42,7 +43,7 @@ team_data = [
         'phone': 'TBU',
         'bio': 'Ensures all organizational communications run smoothly.',
         'achievements': 'Improved response time by 60%',
-        'photo': 'images/fuyad.jpg',
+        'photo': 'images/fuyad.JPG',
         'order': 3
     },
     {
@@ -177,9 +178,12 @@ team_data = [
     }
 ]
 
-# Create new members
-for member_data in team_data:
-    TeamMember.objects.create(**member_data)
-    print(f"Created: {member_data['name']}")
+    # Create new members
+    for member_data in team_data:
+        TeamMember.objects.create(**member_data)
+        print(f"Created: {member_data['name']}")
+    
+    print(f"\nSuccessfully created {len(team_data)} team members.")
 
-print(f"\nSuccessfully created {len(team_data)} team members.")
+if __name__ == '__main__':
+    run()
