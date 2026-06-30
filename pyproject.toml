@@ -1,0 +1,10 @@
+[project]
+name = "muchatrodol"
+version = "0.1.0"
+dependencies = []
+
+[tool.uv]
+override-dependencies = [
+    "sqlparse==0.4.4",
+    "django==4.2.9"
+]
