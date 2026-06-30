@@ -494,7 +494,7 @@ def get_stats(request):
         'subscribers': NewsletterSubscriber.objects.filter(is_active=True).count(),
         'event_registrations': EventRegistration.objects.count(),
         'blood_donations': BloodDonation.objects.count(),
-        'recent_contacts': ContactMessage.objects.count()[:5],
+        'recent_contacts': ContactMessageSerializer(ContactMessage.objects.all()[:5], many=True).data,
         'blood_type_distribution': list(
             BloodDonation.objects.values('blood_type')
             .annotate(count=Count('id'))

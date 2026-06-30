@@ -85,53 +85,59 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Detect if running on Vercel
 IS_VERCEL = os.getenv('VERCEL', False) or os.getenv('VERCEL_ENV', False)
 
-# Database configuration with Vercel enforcement
-if os.getenv('MONGODB_URI'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'djongo',
-            'NAME': os.getenv('MONGODB_NAME', 'muchatrodol_db'),
-            'ENFORCE_SCHEMA': False,
-            'CLIENT': {
-                'host': os.getenv('MONGODB_URI')
-            }  
+# Database configuration with robust connectivity checks and fallback
+MONGODB_URI = os.getenv('MONGODB_URI')
+use_sqlite_fallback = False
+
+if MONGODB_URI:
+    print(f"Testing connection to MongoDB...")
+    try:
+        from pymongo import MongoClient
+        import pymongo.errors
+        
+        # Test connection with a short 2-second timeout.
+        # This will catch DNS resolution issues (e.g. SRV records) and network failure.
+        client = MongoClient(MONGODB_URI, serverSelectionTimeoutMS=2000)
+        client.admin.command('ismaster')
+        
+        # Connection test succeeded, configure Djongo
+        DATABASES = {
+            'default': {
+                'ENGINE': 'djongo',
+                'NAME': os.getenv('MONGODB_NAME', 'muchatrodol_db'),
+                'ENFORCE_SCHEMA': False,
+                'CLIENT': {
+                    'host': MONGODB_URI
+                }  
+            }
         }
-    }
-    print(f"✅ Using MongoDB: {os.getenv('MONGODB_NAME', 'muchatrodol_db')}")
-    print(f"   Connection: {os.getenv('MONGODB_URI')[:30]}...")
-elif IS_VERCEL:
-    # CRITICAL: On Vercel, we MUST use MongoDB (file system is ephemeral)
-    print("=" * 80)
-    print("❌ CRITICAL ERROR: Running on Vercel without MongoDB!")
-    print("=" * 80)
-    print("⚠️  The MONGODB_URI environment variable is NOT set.")
-    print("⚠️  On Vercel, SQLite changes are LOST after each deployment.")
-    print("⚠️  Admin panel updates will NOT persist!")
-    print("")
-    print("🔧 FIX: Set MONGODB_URI in Vercel Project Settings:")
-    print("   1. Go to your Vercel project dashboard")
-    print("   2. Settings → Environment Variables")
-    print("   3. Add MONGODB_URI with your MongoDB Atlas connection string")
-    print("   4. Redeploy your application")
-    print("=" * 80)
-    
-    # Use SQLite as fallback but with a clear warning
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-    print(f"⚠️  FALLBACK: Using ephemeral SQLite (data will be LOST!)")
+        print(f"[OK] Successfully connected to MongoDB: {os.getenv('MONGODB_NAME', 'muchatrodol_db')}")
+    except Exception as e:
+        print("=" * 80)
+        print(f"[WARNING] MongoDB connection failed: {e}")
+        print("[WARNING] Falling back to local SQLite database for this session!")
+        print("=" * 80)
+        use_sqlite_fallback = True
 else:
-    # Local development - SQLite is fine
+    use_sqlite_fallback = True
+
+if use_sqlite_fallback:
+    if IS_VERCEL:
+        print("=" * 80)
+        print("[ERROR] CRITICAL ERROR: Running on Vercel without a working MongoDB connection!")
+        print("[WARNING] On Vercel, SQLite changes are LOST after each deployment.")
+        print("[WARNING] Admin panel updates will NOT persist!")
+        print("=" * 80)
+    
+    # Use SQLite database
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-    print(f"✅ Using SQLite for local development: {BASE_DIR / 'db.sqlite3'}")
+    print(f"[OK] Using SQLite database: {BASE_DIR / 'db.sqlite3'}")
+
 
 
 # Password validation

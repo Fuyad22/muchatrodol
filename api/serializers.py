@@ -29,6 +29,8 @@ class ServiceSerializer(serializers.ModelSerializer):
 
 
 class TeamMemberSerializer(serializers.ModelSerializer):
+    position_display = serializers.CharField(source='get_position_display', read_only=True)
+    
     class Meta:
         model = TeamMember
         fields = '__all__'

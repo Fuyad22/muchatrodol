@@ -1,10 +1,18 @@
 
 import os
 import datetime
+import sys
 import django
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from pymongo import MongoClient
+
+# Reconfigure stdout to use UTF-8 on Windows to prevent UnicodeEncodeError crashes
+if sys.platform.startswith('win'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except AttributeError:
+        pass
 
 # Configure minimal Django settings for password hashing
 if not settings.configured:
@@ -32,7 +40,7 @@ def create_admin_direct():
                 {'username': username},
                 {'$set': {'password': hashed_pw}}
             )
-            print("✅ Password updated successfully!")
+            print("[OK] Password updated successfully!")
         else:
             print(f"Creating new superuser '{username}'...")
             hashed_pw = make_password(password)
@@ -66,10 +74,11 @@ def create_admin_direct():
             user_doc['id'] = max_id + 1
             
             users.insert_one(user_doc)
-            print(f"✅ User created with ID {user_doc['id']}")
+            print(f"[OK] User created with ID {user_doc['id']}")
 
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"[ERROR] Error: {e}")
+
 
 if __name__ == "__main__":
     create_admin_direct()

@@ -12,6 +12,7 @@ function openMemberModal(card) {
     const phone = card.getAttribute('data-phone');
     const bio = card.getAttribute('data-bio');
     const achievements = card.getAttribute('data-achievements');
+    const photo = card.dataset.photo || card.getAttribute('data-photo');
 
     // Populate modal
     document.getElementById('modalMemberName').textContent = name || 'N/A';
@@ -20,15 +21,31 @@ function openMemberModal(card) {
     document.getElementById('modalMemberPhone').textContent = phone || 'N/A';
     document.getElementById('modalMemberBio').textContent = bio || 'No bio available';
 
+    // Populate avatar
+    const modalMemberAvatar = document.getElementById('modalMemberAvatar');
+    if (modalMemberAvatar) {
+        if (photo && photo !== 'null' && photo !== 'N/A' && photo.trim() !== '') {
+            modalMemberAvatar.innerHTML = `<img src="${photo}" alt="${name}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+        } else {
+            modalMemberAvatar.innerHTML = `<i class="fas fa-user-circle"></i>`;
+        }
+    }
+
     // Populate achievements
     const achievementsEl = document.getElementById('modalMemberAchievements');
-    if (achievementsEl && achievements) {
+    if (achievementsEl) {
         achievementsEl.innerHTML = '';
-        achievements.split(',').forEach(achievement => {
+        if (achievements && achievements.trim() !== '') {
+            achievements.split(',').forEach(achievement => {
+                const li = document.createElement('li');
+                li.textContent = achievement.trim();
+                achievementsEl.appendChild(li);
+            });
+        } else {
             const li = document.createElement('li');
-            li.textContent = achievement.trim();
+            li.textContent = 'Active Member';
             achievementsEl.appendChild(li);
-        });
+        }
     }
 
     // Show modal
@@ -102,9 +119,9 @@ function removeToast(toast) {
     }, 300);
 }
 
-// API Configuration - Point to Django backend on port 8000
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:8000/api'
+// API Configuration - Prefer same-origin API, with a localhost fallback when opening the file directly
+const API_URL = window.location.protocol === 'file:'
+    ? 'http://localhost:3000/api'
     : '/api';
 
 console.log('API URL configured as:', API_URL);
@@ -149,6 +166,7 @@ async function loadEvents() {
         }
     } catch (error) {
         console.error('Error loading events:', error);
+        showToast('Failed to load events. Please check backend connection.', 'error');
     }
 }
 
@@ -212,6 +230,7 @@ async function loadNews() {
         }
     } catch (error) {
         console.error('Error loading news:', error);
+        showToast('Failed to load news.', 'error');
     }
 }
 
@@ -233,11 +252,12 @@ async function loadTeamMembers() {
                     memberCard.className = 'member-card';
                     // Store data in dataset
                     memberCard.dataset.name = member.name;
-                    memberCard.dataset.role = member.position;
+                    memberCard.dataset.role = member.position_display || member.position;
                     memberCard.dataset.email = member.email || 'N/A';
                     memberCard.dataset.phone = member.phone || 'N/A';
                     memberCard.dataset.bio = member.bio || 'No bio available';
-                    memberCard.dataset.achievements = 'Active member,Community leader,Event organizer';
+                    memberCard.dataset.achievements = member.achievements || '';
+                    memberCard.dataset.photo = member.photo || '';
 
                     // Add click event listener directly
                     memberCard.addEventListener('click', function () {
@@ -249,7 +269,7 @@ async function loadTeamMembers() {
                             ${member.photo ? `<img src="${member.photo}" alt="${member.name}">` : '<i class="fas fa-user-circle"></i>'}
                         </div>
                         <h4 class="member-name">${member.name}</h4>
-                        <p class="member-role">${member.position}</p>
+                        <p class="member-role">${member.position_display || member.position}</p>
                         <p class="member-info">${member.bio ? member.bio.substring(0, 80) + '...' : 'Click for details'}</p>
                     `;
                     teamGrid.appendChild(memberCard);
@@ -258,6 +278,7 @@ async function loadTeamMembers() {
         }
     } catch (error) {
         console.error('Error loading team members:', error);
+        showToast('Failed to load team members.', 'error');
     }
 }
 
@@ -308,6 +329,7 @@ async function loadGallery() {
         }
     } catch (error) {
         console.error('Error loading gallery:', error);
+        showToast('Failed to load gallery.', 'error');
     }
 }
 
@@ -361,6 +383,7 @@ async function loadFAQs() {
         }
     } catch (error) {
         console.error('Error loading FAQs:', error);
+        showToast('Failed to load FAQs.', 'error');
     }
 }
 
@@ -418,6 +441,7 @@ async function loadSliderContent() {
         }
     } catch (error) {
         console.error('Error loading slider content:', error);
+        showToast('Failed to load slider content.', 'error');
     }
 }
 
