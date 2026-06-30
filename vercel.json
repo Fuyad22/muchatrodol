@@ -1,10 +1,5 @@
 {
     "version": 2,
-    "functions": {
-        "backend/wsgi.py": {
-            "runtime": "@vercel/python"
-        }
-    },
     "routes": [
         {
             "src": "/static/(.*)",
